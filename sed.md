@@ -16,3 +16,13 @@ func execShellByRun(cmd string) error {
 }
 
 ```
+## sed는 공백문자 \s를 받을 수 없다. 
+```
+cmd += fmt.Sprintf("-e 's/^\\([[:space:]]*[^#]*%s[[:space:]]*=[[:space:]]*\\).*/\\1%v/' ", jsonTag, value)
+와 같이 지저분하게 정규 표현식을 써야 한다.
+```
+> 대안으로는 perl , awk를 사용하는 방법이 있다.
+```
+cmd += fmt.Sprintf("-e 's/^\s*([^#]*%s\s*=\s*).*/$1%v/", jsonTag, value)
+로 변경할 수 있다. 
+```
