@@ -20,6 +20,7 @@ s플래그 다음에 사용자가 원하는 문자를 구분자로 지정할 수
 -> 이것 때문에 고생했다...
 
 example)
+
 perl -pi -e 's/(#?[^\s]location\s*=)\s*[\S]*/location = "test"/;' ./default
 
 하나하나 매칭이 되는지 확인하기 위해서 regex101.com을 이용해 타켓 텍스트를 매칭시켜봤다. 
@@ -29,7 +30,9 @@ perl -pi -e 's/(#?[^\s]location\s*=)\s*[\S]*/location = "test"/;' ./default
 
 ```
 example)
-구분자를 "/" 대신 "|"을 사용해야 하는 경우 
+
+구분자를 "/" 대신 "|"을 사용해야 하는 경우
+ 
 ssh 127.0.0.1 "perl -pi -e 's|^\s*#?(file_path\s*=)\s*[^#\s]*|\t\1 \"\"|; s|^\s*#?(file_path\s*=)\s*[^#\s]*|\t\1 \"hifdsfs/fdsfs/fd\"|;' ./test.conf"
 
 만약에 "|" 대신에 "/"을 사용하면 "bash: syntax error near unexpected token `('" 의 에러 메시지가 발생한다.
