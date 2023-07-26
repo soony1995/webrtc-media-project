@@ -1,0 +1,46 @@
+> Custom error 만들기
+
+> built-in error 패키지 안에는 Error() 메서드 하나뿐이기 때문에 해당 메서드만 오버라이딩 해주면 error 객체처럼 사용할 수 있다. 
+
+```
+package main
+
+import (
+	"fmt"
+	"errors"
+)
+type MyError struct{
+	Code string
+	Message string
+}
+
+func (e *MyError) Error() string{
+
+	return e.Code + ", " + e.Message
+}
+
+// MyError 라는 구조체를 생성하고, 
+// error 인터페이스 안에 있는 메서드를 구현한다.
+// interface안에 선언되어 있는 메서드를 모두 구현하게 되면 인터페이스를 만족하는 객체가 된다.
+
+
+func main(){
+
+	err  := do()
+	fmt.Println(err)
+
+	err2 := do2()
+	fmt.Println(err2)
+
+}
+
+func do() error{ // 인터페이스를 만족하는 객체가 될 경우 이렇게 리턴할 수 있다.
+	return &MyError{Code:"C001", Message:"bad message"}
+}
+
+func do2() error{ 
+	return errors.New("error!!!")
+}
+
+```
+참고 자료: https://www.digitalocean.com/community/tutorials/creating-custom-errors-in-go
