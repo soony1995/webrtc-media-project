@@ -1,5 +1,7 @@
 ## 케이스별 효과적인 테스트 코드 작성 전력
 
+## mutation test 
+
 ### golang 테스트 개요  
     - _test.go 확장자를 가진 파일에 작성됩니다.
     - Table driven testing 패턴으로 작성합니다.
